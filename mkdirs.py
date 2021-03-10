@@ -18,11 +18,9 @@ def create_dirs(num, dir_type):
         for l2 in letters:
             for l3 in letters:
                 dirName = l1 + l2 + l3 + '_'  + str(i) + "_"
-                dirDescription =  input("What is the description of " + 
-                    dir_type + str(i) + "? ")
+                dirDescription =  input("What is the description of " + '_' + dir_type + '_' + str(i) + "? ")
                 #replaces all spaces with underscores to avoid problems with escape characters
                 dirDescription = dirDescription.replace(' ', '_')
-                print("dirDescription is " + dirDescription)
                 dirName = dirName + dirDescription
                 #TODO implement some form of input handling
                 os.system("mkdir " + dirName)
@@ -37,4 +35,4 @@ while dir_type != 'chapter' and dir_type != 'chapter_section':
     print("Do you want to make a chapter or chapter section? ")
     dir_type = input("Enter 'chapter' or 'chapter_section' ")
 
-create_dirs(int(input("How many directories do you want to make? ")), dir_type)
+create_dirs(int(input("How many chapters do you want to make? ")), dir_type)
