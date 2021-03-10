@@ -1,10 +1,10 @@
 import os
 
 def create_dirs(num, dir_type):
-    if numChapters == 0:
+    if num == 0:
         #nothing needs to be done
         return
-    if numChapters > 17576:
+    if num > 17576:
         print ("Error: Exceeds number of accepted chapters. ")
         #createChapters(input("Please enter a valid number between 1 and 17576 inclusive."), dir_type)
         return
@@ -28,16 +28,10 @@ def create_dirs(num, dir_type):
                 os.system("mkdir " + chapterName)
                 i += 1
                 #If you've alreayd made enough chapters
-                if i > numChapters:
+                if i > num:
                    return
 
 create_dirs(int(input("How many chapters do you want to make? ")), 'c')
-
-def getHideDirName(dirName):
-    return '.' + dirName
-def hideDir(dirName):
-    os.system('mv ' + dirName + ' ' + getHideDirName(dirName))
-#TODO add funtionality for creating chapter sections 
 
 #testing of the program
 hideDir(input("What directory do you want to hide?"))
