@@ -1,15 +1,19 @@
 import os
 from icecream import ic
-new_dir_path = input("In what directory do you wish to store all your notes? ")
+
+new_dir_path = input("In what directory do you wish to store all your new dir? ")
+
 def get_zero_num(int_num):
     str_num = str(int_num)
-    len = len(str_num)
-    if len == 1:
-        return int('00' + str_num)
-    elif len == 2:
-        return int('0' + str_num)
-    elif len == 3:
-        return int(str_num)
+    length = len(str_num)
+    switcher = {1: '000', 2: '00', 3: '0', 4: ''}
+    return switcher.get(length) + str_num
+    
+#testing of the above function
+ic(get_zero_num(9))
+ic(get_zero_num(27))
+ic(get_zero_num(987))
+
 def create_dirs(num, dir_type, new_dir_path):
     #TODO switch to a chapter/chapter_section followed by a number, with 0 placeholder
     #eg. instead of AAC_chapter3_cell_biology -> 003_chapter3_cell_biology
