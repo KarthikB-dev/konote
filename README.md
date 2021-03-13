@@ -8,8 +8,8 @@ built in functionality that help you apply evidence based study tips like active
 space repetition.
 
 
-## Why the name _konote?_
-This application will deal a knockout blow to your lethargy!
+## Why the name _konote_?
+This application will deal a knockout blow to your laziness and poor work ethic!
 
 
 ## I'm interested. Tell me more!
