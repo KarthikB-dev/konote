@@ -1,7 +1,18 @@
 import os
-
-new_dir_path = input("In what directory do you wish to store all your notes?")
-def create_dirs(num, dir_type):
+from icecream import ic
+new_dir_path = input("In what directory do you wish to store all your notes? ")
+def get_zero_num(int_num):
+    str_num = str(int_num)
+    len = len(str_num)
+    if len == 1:
+        return int('00' + str_num)
+    elif len == 2:
+        return int('0' + str_num)
+    elif len == 3:
+        return int(str_num)
+def create_dirs(num, dir_type, new_dir_path):
+    #TODO switch to a chapter/chapter_section followed by a number, with 0 placeholder
+    #eg. instead of AAC_chapter3_cell_biology -> 003_chapter3_cell_biology
     #17576 is the maxium supported chapter amount because 3 letters are used 
     #for ordering the chapters
     if num == 0:
@@ -25,7 +36,7 @@ def create_dirs(num, dir_type):
     for l1 in letters:
         for l2 in letters:
             for l3 in letters:
-                dirName = l1 + l2 + l3 + '_'  + str(i) + "_"
+                dirName = l1 + l2 + l3 + '_' + dir_type + str(i) + "_"
                 dirDescription =  input("What is the description of " + 
                 '_' + dir_type + '_' + str(i) + "? ")
                 #deals with problems with escape characters
@@ -44,4 +55,4 @@ while dir_type != 'chapter' and dir_type != 'chapter_section':
     print("Do you want to make a chapter or chapter section? ")
     dir_type = input("Enter 'chapter' or 'chapter_section' ")
 
-create_dirs(int(input("How many directories do you want to make? ")), dir_type)
+create_dirs(int(input("How many directories do you want to make? ")), dir_type, new_dir_path)
