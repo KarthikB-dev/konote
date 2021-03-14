@@ -31,7 +31,7 @@ def create_dirs(num, dir_type, new_dir_path):
         return
     #if an acceptable chapter or chapter section amount has been entered
     i = int(input("What is the starting number for the chapter or chapter section? "))
-    while i < num + i:
+    while i < num + i: - 1
         dirName = dir_type + '_' + get_zero_num(i) + "_"
         dirDescription =  input("What is the description of " + 
         '_' + dir_type + '_' + str(i) + "? ")
