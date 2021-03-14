@@ -28,7 +28,10 @@ def create_dirs(num, dir_type, new_dir_path, i):
     #to add a chapter section. If you try to do this, the program will exit
     if desc in os.listdir():
         with open(desc) as d:
-            if (f.readlines()[1] != dir_type):
+            #checks if the new type matches the one in description.txt
+            accepted_type = d.readlines()[1]
+            #the accepted directory type is found on the second line of description.txt
+            if accepted_type.rstrip(accepted_type[-1]) != dir_type:
                 print("Error: incorrect type of directory")
                 return
     else:
@@ -56,6 +59,9 @@ def create_dirs(num, dir_type, new_dir_path, i):
         #TODO implement some form of input handling
         os.system("mkdir " + new_dir_path + '/' + dirName)
         i += 1
+    #stores the number of new directories made in desc
+    os.system("echo 'number of dirs' >> " + desc)
+    os.system("echo " + str(i - 1) + ' >> ' + desc)
         
 #dir_type is 'chapter' or 'chapter_section' depending on the directory type needed
 dir_type = ""
