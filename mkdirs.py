@@ -15,7 +15,13 @@ ic(get_zero_num(9))
 ic(get_zero_num(27))
 ic(get_zero_num(987))
 ic(get_zero_num(3080))
-
+def translate_name(dir_type):
+    if dir_type == 'chapter':
+        return 'ch'
+    elif dir_type == 'chapter_section':
+        return 'cs'
+    else:
+        return ''
 #num is the number of new directories to be made
 #dir_type is the type of directory, which can be book, chapter,
 #or chapter section
@@ -38,7 +44,7 @@ def create_dirs(num, dir_type, new_dir_path, i):
     else:
         os.system('echo Directory type: >> ' + desc)
         os.system('echo ' + dir_type + ' >> ' + desc)
-    
+
     #9999 is the maxium supported chapter amount because 4 digits are used 
     if num == 0:
         #nothing needs to be done
@@ -51,9 +57,9 @@ def create_dirs(num, dir_type, new_dir_path, i):
     #if an acceptable chapter or chapter section amount has been entered
     num_to_make = num + i
     while i < num_to_make:
-        dirName = dir_type + '_' + get_zero_num(i) + "_"
-        dirDescription =  input("What is the description of " + 
-        '_' + dir_type + '_' + str(i) + "? ")
+        dirName = translate_name(dir_type) + get_zero_num(i) + "_"
+        dirDescription =  input("What is the description of " +
+        dir_type + str(i) + "? ")
         #deals with problems with escape characters
         dirDescription = dirDescription.replace(' ', '_')
         dirName = dirName + dirDescription
