@@ -4,7 +4,7 @@ This project has not yet been completed and so has very limited functionality as
 
 ## What is konote in one sentence?
 A notetaking application that helps you organize a great deal of notes, and that helps you apply 
-[evidence based study tips] like active recall and spaced repetition.
+[evidence based study tips](https://www.youtube.com/watch?v=ukLnPbIffxE) like active recall and spaced repetition.
 
 
 ## Why the name _konote_?
