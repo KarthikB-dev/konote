@@ -3,8 +3,14 @@ import os
 def hide_dir(dir_name):
     hide_name = '.' + dir_name
     os.system('mv ' + dir_name + hide_name)
+def reveal_dir(dir_name):
+    if dir_name[0] != '.':
+        print("Dir not hidden")
+        return
+    reveal_dir_name = dir_name[1:]
+    os.system('mv ' + dir_name + ' ' + reveal_dir_name)
 def reveal_hidden():
-    os.system('ls - a ')
+    os.system('tree -a ')
 def display_current_dir():
     os.system('tree $(pwd)')
 
