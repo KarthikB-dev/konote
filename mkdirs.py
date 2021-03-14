@@ -16,10 +16,25 @@ ic(get_zero_num(987))
 ic(get_zero_num(3080))
 
 #num is the number of new directories to be made
-#dir_type is the type of directory, either chapter or chapter section
+#dir_type is the type of directory, which can be book, chapter,
+#or chapter section
 #new_dir_path is the file path to the directory where these new subdirectories
 #are to be made
-def create_dirs(num, dir_type, new_dir_path):
+def create_dirs(num, dir_type, new_dir_path, i):
+    #creates the description.txt file if required
+    desc = 'description.txt'
+    #The below if statement checks that you are adding the right type of directory
+    #for example, if a directory contains a group of books, it would be illogical
+    #to add a chapter section. If you try to do this, the program will exit
+    if desc in os.listdir():
+        with open(desc) as d:
+            if (f.readlines()[1] != dir_type):
+                print("Error: incorrect type of directory")
+                return
+    else:
+        os.system('echo Directory type: >> ' + desc)
+        os.system('echo ' + dir_type + ' >> description.txt')
+    
     #9999 is the maxium supported chapter amount because 4 digits are used 
     if num == 0:
         #nothing needs to be done
@@ -30,8 +45,8 @@ def create_dirs(num, dir_type, new_dir_path):
         # dir_type)
         return
     #if an acceptable chapter or chapter section amount has been entered
-    i = int(input("What is the starting number for the chapter or chapter section? "))
-    while i < num + i: - 1
+    num_to_make = num + i
+    while i < num_to_make:
         dirName = dir_type + '_' + get_zero_num(i) + "_"
         dirDescription =  input("What is the description of " + 
         '_' + dir_type + '_' + str(i) + "? ")
@@ -48,4 +63,6 @@ while dir_type != 'chapter' and dir_type != 'chapter_section':
     print("Do you want to make a chapter or chapter section? ")
     dir_type = input("Enter 'chapter' or 'chapter_section' ")
 
-create_dirs(int(input("How many directories do you want to make? ")), dir_type, new_dir_path)
+#i is the starting number for the chapter. If you 
+i = int(input("What is the starting number for the chapter or chapter section? "))
+create_dirs(int(input("How many directories do you want to make? ")), dir_type, new_dir_path, i)
