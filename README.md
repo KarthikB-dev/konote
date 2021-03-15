@@ -19,4 +19,5 @@ And it helps you take notes.
 ```gh repo clone KarthikB-dev/konote```
 
 
-Note that konote has only been testing on GNU/Linux systems. Windows and Mac OSsupport will come in the future
+Note that konote has only been testing on GNU/Linux systems. Windows and Mac OS support will come in the future
+after the switch from ```os.system()``` to ```pathlib``` is made.
