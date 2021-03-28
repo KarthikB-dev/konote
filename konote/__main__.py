@@ -1,8 +1,7 @@
-import re
-import sys
-
-from samepack import main
-#thank you to @r2dev2 for this program
+import os
+def input_num_tabs(file_name):
+    with open file_name as f:
+        lines = f.readlines()
 if __name__ == "__main__":
-    sys.argv[0] = re.sub(r"(-script\.pyw?|\.exe)?$", "", sys.argv[0])
-    sys.exit(main())
+    num_tabs = input_num_tabs(input.txt)
+
