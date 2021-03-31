@@ -7,7 +7,7 @@ try:
     with open("README.md", "r") as fh:
         long_description = fh.read()
 except:
-    long_description = "A js bundler to output similar output code as the source code\n"
+    long_description = "A notetaking application using evidence based study techniques"
 
 try:
     with open("requirements.txt", "r") as reqs:
