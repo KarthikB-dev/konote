@@ -4,7 +4,7 @@ from pathlib import Path
 
 from samepack.build import build
 
-#thank you to r2dev2 for this program
+# thank you to r2dev2 for this program
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("entry", help="the entry point to the program")
