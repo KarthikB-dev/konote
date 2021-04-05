@@ -1,7 +1,7 @@
 # konote
 This project has not yet been completed and so has very limited functionality as of now.
 
-![image](https://user-images.githubusercontent.com/55643522/111233451-3da39f80-85aa-11eb-80d2-875718ff4ae6.png)
+![image](https://user-images.githubusercontent.com/55643522/113537563-e6cc2d00-958d-11eb-9a54-05398df091a2.png)
 
 
 ## What is konote in one sentence?
