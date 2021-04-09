@@ -1,0 +1,13 @@
+Programming notes
+    Algorithms
+        Binary Search
+        Sequential Search
+    Data structures
+        Collections
+            Set
+            ArrayList
+            LinkedList
+            Queue
+        Maps
+            HashMap
+            TreeMap
