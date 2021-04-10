@@ -1,5 +1,9 @@
 # konote 
 
+Konote allows you to have a high level view of a topic or a look at the finer details, based
+on what you need to better understand the topic. It also employs the following study
+techniques:
+
 ## Active recall
 konote has two main functions. The first is to help you organize information as you read it
 by organizing notes in a tree structure, where chapters 'branch' off a book, chapter sections
