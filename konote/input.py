@@ -42,10 +42,17 @@ We would have
 to be stored in a JSON.
 '''
 #TODO make notes have the desired dictionary structure
-notes = {}
+notes = dict()
+
+def get_num_tabs(line):
+    for char in 
 
 notes_path = Path.home() / "Documents" / "konote_notes" / "notes.txt"
 with open(notes_path, 'r') as fin:
     lines = fin.readlines()
+    print(lines)
+    for line in lines:
+
+
 with open("notes.json", "w+") as fout:
     ujson.dump(notes, fout)
