@@ -45,7 +45,23 @@ to be stored in a JSON.
 notes = dict()
 
 def get_num_tabs(line):
-    for char in 
+    num_tabs = 0
+    for char in line:
+        if char == '\t':
+            num_tabs += 1
+        else:
+            break
+    return num_tabs
+
+#checks that indentation is done correctly in the notes
+def proper_format(lines):
+    prev_num = get_num_tabs(lines[0])
+    line_num = 0
+    for line in lines:
+        if get_num_tabs(line) > prev_num + 1:
+            return "Incorrect formatting on line " + line_num
+        prev_num = get_num_tabs(line)
+        line_num += 1
 
 notes_path = Path.home() / "Documents" / "konote_notes" / "notes.txt"
 with open(notes_path, 'r') as fin:
