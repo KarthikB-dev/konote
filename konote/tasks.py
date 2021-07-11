@@ -44,7 +44,7 @@ def write_tasks(args, tasks, tasks_path):
 
 # creates the folder to store tasks, if it does not exist
 def make_yaml_path():
-    tasks_path = Path.home() / "konote_tasks"
+    tasks_path = Path.home() / "konote_files"
     yaml_path = tasks_path / "Tasks.yaml"
     already_made_dir = tasks_path.exists()
     if not already_made_dir:
