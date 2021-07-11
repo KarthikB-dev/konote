@@ -3,3 +3,4 @@ test.py
 description.txt
 JSON_how_to.png
 black.sh
+*.yaml
