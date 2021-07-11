@@ -6,14 +6,12 @@ import yaml
 
 # from icecream import ic
 
-tasks = {}
-args = None
 
-
-def read_tasks():
+def read_tasks(tasks):
+    # TODO store Tasks.yaml in home directory
     with open("Tasks.yaml", "r") as fin:
-        global tasks
         tasks = yaml.safe_load(fin)
+    return tasks
 
 
 def task_input():
@@ -24,6 +22,7 @@ def task_input():
     parser.add_argument("task_contents", help="What your task is about, in quotes")
     global args
     args = parser.parse_args()
+    return args
 
 
 def write_tasks():
@@ -32,12 +31,15 @@ def write_tasks():
         tasks[args.task_type].append(args.task_contents)
         with open("Tasks.yaml", "w") as fout:
             yaml.dump(tasks, fout)
+    else:
+        print("error: invalid task type")
 
 
 def main():
-    read_tasks()
-    task_input()
-    write_tasks()
+    tasks = {}
+    tasks = read_tasks(tasks)
+    args = task_input()
+    write_tasks(args)
     # ic(tasks)
 
 
