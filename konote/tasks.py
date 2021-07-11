@@ -6,11 +6,12 @@ import yaml
 
 # from icecream import ic
 import copy
+import pathlib
+from pathlib import Path
 
-
-def read_tasks(tasks):
-    # TODO store Tasks.yaml in home directory
-    with open("Tasks.yaml", "r") as fin:
+# reads tasks from the yaml file
+def read_tasks(tasks, task_path):
+    with open(task_path, "r") as fin:
         tasks = yaml.safe_load(fin)
     # if the program has been run for the first time
     if tasks == None:
@@ -18,6 +19,7 @@ def read_tasks(tasks):
     return tasks
 
 
+# takes new task input from console
 def task_input():
     parser = argparse.ArgumentParser()
     parser.add_argument(
@@ -28,21 +30,35 @@ def task_input():
     return args
 
 
-def write_tasks(args, tasks):
+# writes the tasks to the yaml file
+def write_tasks(args, tasks, tasks_path):
     valid_task_types = ["qt", "pr", "ltg"]
     if args.task_type in valid_task_types:
         new_tasks = copy.deepcopy(tasks)
         new_tasks[args.task_type] = new_tasks[args.task_type] + [args.task_contents]
-        with open("Tasks.yaml", "w") as fout:
+        with open(tasks_path, "w") as fout:
             yaml.dump(new_tasks, fout)
     else:
         print("error: invalid task type")
 
 
+# creates the folder to store tasks, if it does not exist
+def make_yaml_path():
+    tasks_path = Path.home() / "konote_tasks"
+    yaml_path = tasks_path / "Tasks.yaml"
+    already_made_dir = tasks_path.exists()
+    if not already_made_dir:
+        pathlib.Path(tasks_path).mkdir(exist_ok=False)
+        create_file = open(yaml_path, "w+")
+        create_file.close()
+    return yaml_path
+
+
 def main():
-    tasks = read_tasks({})
+    yaml_path = make_yaml_path()
+    tasks = read_tasks({}, yaml_path)
     args = task_input()
-    write_tasks(args, tasks)
+    write_tasks(args, tasks, yaml_path)
 
 
 if __name__ == "__main__":
