@@ -21,6 +21,11 @@ def read_tasks(tasks, task_path):
 
 # takes new task input from console
 def task_input():
+    # TODO add support for 'nested' tasks
+    # add an optional argument that shows what task it must be added to
+    # for example, you might have a task that says 'learn calculus',
+    # which would have a subtask of learn integral calculus, which in turn
+    # would have a subtask of learn to deal with exponents
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "task_type", help="qt for quick todo, pr for project, ltg for long term goal"
