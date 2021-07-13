@@ -4,3 +4,10 @@ description.txt
 JSON_how_to.png
 black.sh
 *.yaml
+konote.egg-info/
+konote/]
+konote/__pycache__/
+konote/argparse
+
+												
+
