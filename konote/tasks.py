@@ -4,7 +4,7 @@ import argparse
 
 import yaml
 
-# from icecream import ic
+from icecream import ic
 import copy
 import pathlib
 from pathlib import Path
@@ -15,7 +15,7 @@ def read_tasks(tasks, task_path):
         tasks = yaml.safe_load(fin)
     # if the program has been run for the first time
     if tasks == None:
-        tasks = {"qt": [], "pr": [], "ltg": []}
+        tasks = {"qt": {}, "pr": {}, "ltg": {}}
     return tasks
 
 
@@ -40,7 +40,7 @@ def write_tasks(args, tasks, tasks_path):
     valid_task_types = ["qt", "pr", "ltg"]
     if args.task_type in valid_task_types:
         new_tasks = copy.deepcopy(tasks)
-        new_tasks[args.task_type] = new_tasks[args.task_type] + [args.task_contents]
+        new_tasks[args.task_type][args.task_contents] = None
         with open(tasks_path, "w") as fout:
             yaml.dump(new_tasks, fout)
     else:
@@ -62,6 +62,7 @@ def make_yaml_path():
 def main():
     yaml_path = make_yaml_path()
     tasks = read_tasks({}, yaml_path)
+    ic(tasks)
     args = task_input()
     write_tasks(args, tasks, yaml_path)
 
