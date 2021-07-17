@@ -4,7 +4,7 @@ import argparse
 
 import yaml
 
-from icecream import ic
+# from icecream import ic
 import copy
 import pathlib
 from pathlib import Path
@@ -20,6 +20,8 @@ def read_tasks(tasks, task_path):
 
 
 # takes new task input from console
+
+
 def task_input():
     # TODO add support for 'nested' tasks
     # add an optional argument that shows what task it must be added to
@@ -28,7 +30,8 @@ def task_input():
     # would have a subtask of learn to deal with exponents
     parser = argparse.ArgumentParser()
     parser.add_argument(
-        "task_type", help="qt for quick todo, pr for project, ltg for long term goal"
+        "task_type",
+        help="qt for quick todo, pr for project, ltg for long term goal, st for nested tasks",
     )
     parser.add_argument("task_contents", help="What your task is about, in quotes")
     args = parser.parse_args()
@@ -44,7 +47,21 @@ def write_tasks(args, tasks, tasks_path):
         with open(tasks_path, "w") as fout:
             yaml.dump(new_tasks, fout)
     else:
-        print("error: invalid task type")
+        # TODO add support for 'st' or subtask
+        if args.task_type == "st":
+            # The task needs to be add
+            # as part of another task
+            # ic(tasks)
+            # what must be done is that
+            # user input about which task they want
+            # to change must be taken
+            # display every existing task
+            # TODO change this so that tasks are displayed, user input as to what task this one should be added to is taken
+            print(tasks)
+            # TODO add support for 'st' or subtask
+
+        else:
+            print("error: invalid task type")
 
 
 # creates the folder to store tasks, if it does not exist
@@ -62,7 +79,6 @@ def make_yaml_path():
 def main():
     yaml_path = make_yaml_path()
     tasks = read_tasks({}, yaml_path)
-    ic(tasks)
     args = task_input()
     write_tasks(args, tasks, yaml_path)
 
