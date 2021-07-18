@@ -37,15 +37,20 @@ def task_input():
     args = parser.parse_args()
     return args
 
-
+# checks if the task contents are reserved
+def is_reserved_word(task):
+    return task == 'TODO' or task == 'ANSWER'
 # writes the tasks to the yaml file
 def write_tasks(args, tasks, tasks_path):
     valid_task_types = ["qt", "pr", "ltg"]
     if args.task_type in valid_task_types:
         new_tasks = copy.deepcopy(tasks)
-        new_tasks[args.task_type][args.task_contents] = None
-        with open(tasks_path, "w") as fout:
-            yaml.dump(new_tasks, fout)
+        if is_reserved_word(args.task_contents):
+            print("Error: Invalid task name"
+        else:
+            new_tasks[args.task_type][args.task_contents] = None
+            with open(tasks_path, "w") as fout:
+                yaml.dump(new_tasks, fout)
     else:
         # TODO add support for 'st' or subtask
         if args.task_type == "st":
