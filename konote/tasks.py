@@ -37,9 +37,12 @@ def task_input():
     args = parser.parse_args()
     return args
 
+
 # checks if the task contents are reserved
 def is_reserved_word(task):
-    return task == 'TODO' or task == 'ANSWER'
+    return task == "TODO" or task == "ANSWER"
+
+
 # writes the tasks to the yaml file
 def write_tasks(args, tasks, tasks_path):
     valid_task_types = ["qt", "pr", "ltg"]
