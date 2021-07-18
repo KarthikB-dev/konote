@@ -46,7 +46,7 @@ def write_tasks(args, tasks, tasks_path):
     if args.task_type in valid_task_types:
         new_tasks = copy.deepcopy(tasks)
         if is_reserved_word(args.task_contents):
-            print("Error: Invalid task name"
+            print("Error: Invalid task name")
         else:
             new_tasks[args.task_type][args.task_contents] = None
             with open(tasks_path, "w") as fout:
