@@ -25,8 +25,11 @@ def display_tasks(tasks, header_len):
         print()
         print(category)
         print(header_len * "*")
-        for task in tasks[category]:
-            print(task)
+        if type(tasks[category]) is dict:
+            for task in tasks[category]:
+                print(task)
+        else:
+            print(tasks[category])
 
 
 # takes new task input from console
