@@ -6,6 +6,8 @@ Konote is designed to be a multipurpose productivity tool. It currently only sup
 
 There are three main types of tasks - long term goals, projects, and quick todos. 
 
+The main purpose of these tasks is to log todos that do not have a due date. 
+
 ### Long term goals
 These are things like learning a new language, acquiring a new skill, or taking a course.
 
