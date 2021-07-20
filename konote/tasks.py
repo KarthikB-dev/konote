@@ -19,6 +19,16 @@ def read_tasks(tasks, task_path):
     return tasks
 
 
+# displays all tasks
+def display_tasks(tasks, header_len):
+    for category in tasks:
+        print()
+        print(category)
+        print(header_len * "*")
+        for task in tasks[category]:
+            print(task)
+
+
 # takes new task input from console
 
 
@@ -65,7 +75,7 @@ def write_tasks(args, tasks, tasks_path):
             # to change must be taken
             # display every existing task
             # TODO change this so that tasks are displayed, user input as to what task this one should be added to is taken
-            print(tasks)
+            display_tasks(tasks, 10)
             # TODO add support for 'st' or subtask
 
         else:
