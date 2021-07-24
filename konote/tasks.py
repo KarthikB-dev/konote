@@ -8,6 +8,7 @@ import yaml
 import copy
 import pathlib
 from pathlib import Path
+from typing import Iterable
 
 # reads tasks from the yaml file
 def read_tasks(tasks, task_path):
@@ -25,7 +26,7 @@ def display_tasks(tasks, header_len):
         print()
         print(category)
         print(header_len * "*")
-        if type(tasks[category]) is dict:
+        if isinstance(tasks[category], Iterable): 
             for task in tasks[category]:
                 print(task)
         else:
@@ -92,8 +93,7 @@ def make_yaml_path():
     already_made_dir = tasks_path.exists()
     if not already_made_dir:
         pathlib.Path(tasks_path).mkdir(exist_ok=False)
-        create_file = open(yaml_path, "w+")
-        create_file.close()
+        yaml_path.touch()
     return yaml_path
 
 
