@@ -26,7 +26,7 @@ def display_tasks(tasks, header_len):
         print()
         print(category)
         print(header_len * "*")
-        if isinstance(tasks[category], Iterable): 
+        if isinstance(tasks[category], Iterable):
             for task in tasks[category]:
                 print(task)
         else:
@@ -54,7 +54,7 @@ def task_input():
 
 # checks if the task contents are reserved
 def is_reserved_word(task):
-    return task == "TODO" or task == "ANSWER"
+    return task in ["__TODO", "__ANSWER"]
 
 
 # writes the tasks to the yaml file
