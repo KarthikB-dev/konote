@@ -58,7 +58,7 @@ def is_reserved_word(task):
 
 
 # writes the tasks to the yaml file
-def write_tasks(args, tasks, tasks_path):
+def write_tasks(args, tasks, kfiles_path):
     valid_task_types = ["qt", "pr", "ltg"]
     if args.task_type in valid_task_types:
         new_tasks = copy.deepcopy(tasks)
@@ -66,14 +66,13 @@ def write_tasks(args, tasks, tasks_path):
             print("Error: Invalid task name")
         else:
             new_tasks[args.task_type][args.task_contents] = None
-            with open(tasks_path, "w") as fout:
+            with open(kfiles_path, "w") as fout:
                 yaml.dump(new_tasks, fout)
     else:
         # TODO add support for 'st' or subtask
         if args.task_type == "st":
             # The task needs to be add
             # as part of another task
-            # ic(tasks)
             # what must be done is that
             # user input about which task they want
             # to change must be taken
@@ -88,11 +87,11 @@ def write_tasks(args, tasks, tasks_path):
 
 # creates the folder to store tasks, if it does not exist
 def make_yaml_path():
-    tasks_path = Path.home() / "konote_files"
-    yaml_path = tasks_path / "Tasks.yaml"
-    already_made_dir = tasks_path.exists()
+    kfiles_path = Path.home() / "konote_files"
+    yaml_path = kfiles_path / "Tasks.yaml"
+    already_made_dir = kfiles_path.exists()
     if not already_made_dir:
-        pathlib.Path(tasks_path).mkdir(exist_ok=False)
+        pathlib.Path(kfiles_path).mkdir(exist_ok=False)
         yaml_path.touch()
     return yaml_path
 
