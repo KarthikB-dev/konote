@@ -32,3 +32,11 @@ In the console, type `konote qt <name of long term goal>` to add one to your lis
 Go to your home directory, then a folder named `konote_files` and find a file called `Tasks.yaml`.
 
 This file stores all the tasks you have made. You can edit it directly, and new tasks will be created
+
+## Coming Features
+
+### Frequency Based todos. 
+
+For example you might brush your teeth twice a day, go for a walk once a day, and do bicep curls every other day.
+
+Konote would be able to remind you of this.
