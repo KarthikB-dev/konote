@@ -34,6 +34,21 @@ This file stores all the tasks you have made. You can edit it directly, and new 
 
 ### Frequency Based todos. 
 
+Each tasks has a certain frequency associated with it.
+
 For example you might brush your teeth twice a day, go for a walk once a day, and do bicep curls every other day.
 
+If you do bicep curls once every two days, then the JSON file would list the task with a frequency of 2.
+
+If you walk every day, then the JSON file would list the task with a frequency of 1.
+
+The program stores an `init` date, which is the date of when you first ran the program in `yyyy-mm-dd` format.
+
+The number of days between the current date and the `init` date are calculted, and modular arithmetic is
+done on the value stored in the `freq` field for the todo. 
+
+Eg. if you initialized the program `2021-08-04` and the current date was `2021-08-08` and the frequency of bicep curls was 2, then konote would find the number of days between these two days (which is 4 days), then take this value modulo 2, and get 0. Because the result is 0, you have to do bicep curls today.
+
 Konote would be able to remind you of this.
+
+
