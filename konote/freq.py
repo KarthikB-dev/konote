@@ -1,4 +1,5 @@
 from datetime import datetime, timedelta, date
+import ujson
 
 
 def get_tmrw(today):
@@ -18,8 +19,13 @@ def due_today(days_between, freq):
     return days_between % freq == 0
 
 
+def write_to_json(d):
+    with open("hi.json", "w") as fout:
+        ujson.dump(d, fout)
+
+
 def main():
-    today = get_today()
+    today = date.today()
     five_days = get_days_from_now(today, 5)
     print(five_days)
 
