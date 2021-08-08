@@ -1,14 +1,8 @@
 from datetime import datetime, timedelta, date
 
 
-def get_today():
-    today = date.today()
-    return today
-
-
 def get_tmrw(today):
-    tmrw = today + timedelta(days=1)
-    return tmrw
+    return today + timedelta(days=1)
 
 
 def get_days_from_now(today, days_from_today):
