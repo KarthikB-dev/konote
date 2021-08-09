@@ -1,4 +1,5 @@
 from datetime import datetime, timedelta, date
+from pathlib import Path
 import ujson
 
 
@@ -20,13 +21,15 @@ def due_today(days_between, freq):
 
 
 def write_to_json(d):
-    with open("hi.json", "w") as fout:
+    json_path = Path.home() / "konote_files" / "test.json"
+    with open(json_path, "w") as fout:
         ujson.dump(d, fout)
 
 
 def main():
     today = date.today()
     five_days = get_days_from_now(today, 5)
+    write_to_json({'hi': 'bye'})
     print(five_days)
 
 

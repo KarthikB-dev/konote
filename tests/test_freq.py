@@ -1,0 +1,1 @@
+from konote.freq import *
