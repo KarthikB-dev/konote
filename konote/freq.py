@@ -29,7 +29,7 @@ def write_to_json(d):
 def read_json():
     json_path = Path.home() / "konote_files" / "freq.json"
     with open(json_path, "r") as fout:
-        ujson.load(d, fout)
+        return ujson.load(fout)
 
 
 def main():
