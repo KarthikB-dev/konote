@@ -15,9 +15,29 @@ def test_days_between_dates():
     assert days_between == 30
 
 
+def test_read_json():
+    in_dict = read_json()
+    ic(in_dict)
+    return in_dict
+
+
+def test_write_json():
+    write_to_json({"hi": "bye"})
+    assert test_read_json() == {"hi": "bye"}
+
+
+def test_edit_json():
+    d = read_json()
+    d["hi"] = "bye bye"
+    write_to_json(d)
+    ic(read_json())
+
+
 def main():
     test_tmrw()
     test_days_between_dates()
+    test_read_json()
+    test_edit_json()
 
 
 if __name__ == "__main__":
