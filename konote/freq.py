@@ -16,8 +16,8 @@ def days_between_dates(d1, d2):
     return (d2 - d1).days
 
 
-def due_today(days_between, freq):
-    return days_between % freq == 0
+def due_today(init_date, curr_date, freq):
+    return days_between_dates(init_date, curr_date) % freq == 0
 
 
 def write_to_json(d):
@@ -29,7 +29,7 @@ def write_to_json(d):
 def main():
     today = date.today()
     five_days = get_days_from_now(today, 5)
-    write_to_json({'hi': 'bye'})
+    write_to_json({"hi": "bye"})
     print(five_days)
 
 
