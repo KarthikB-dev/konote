@@ -21,9 +21,15 @@ def due_today(init_date, curr_date, freq):
 
 
 def write_to_json(d):
-    json_path = Path.home() / "konote_files" / "test.json"
+    json_path = Path.home() / "konote_files" / "freq.json"
     with open(json_path, "w") as fout:
         ujson.dump(d, fout)
+
+
+def read_json():
+    json_path = Path.home() / "konote_files" / "freq.json"
+    with open(json_path, "r") as fout:
+        ujson.load(d, fout)
 
 
 def main():
