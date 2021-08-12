@@ -51,6 +51,8 @@ Eg. if you initialized the program `2021-08-04` and the current date was `2021-0
 
 Konote would be able to remind you of this.
 
+#### Konote console input
+
 Konote will let you do this by having you enter `konote freq init`. The date that you entered this will be recorded.
 
 To add new frequency based todos, you enter `konote freq add <name of task> <frequency of task>`
