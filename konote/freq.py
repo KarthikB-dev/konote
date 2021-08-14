@@ -12,12 +12,8 @@ def get_days_from_now(today, days_from_today):
     return new_date
 
 
-def days_between_dates(d1, d2):
-    return (d2 - d1).days
-
-
 def due_today(init_date, curr_date, freq):
-    return days_between_dates(init_date, curr_date) % freq == 0
+    return (curr_date - init_date).days % freq == 0
 
 
 def write_to_json(d):
