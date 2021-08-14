@@ -6,8 +6,7 @@ black.sh
 *.yaml
 konote.egg-info/
 konote/]
-konote/__pycache__/
 konote/argparse
-
+*__pycache__*
 												
 
