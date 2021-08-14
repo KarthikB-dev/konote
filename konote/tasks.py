@@ -90,9 +90,8 @@ def make_yaml_path():
     kfiles_path = Path.home() / "konote_files"
     yaml_path = kfiles_path / "Tasks.yaml"
     already_made_dir = kfiles_path.exists()
-    if not already_made_dir:
-        pathlib.Path(kfiles_path).mkdir(exist_ok=False)
-        yaml_path.touch()
+    pathlib.Path(kfiles_path).mkdir(exist_ok=True)
+    yaml_path.touch()
     return yaml_path
 
 
