@@ -1,10 +1,6 @@
 from konote.freq import *
 
 
-def test_tmrw():
-    today = date.today()
-
-
 def test_days_between_dates():
     d1 = date.fromisoformat("2020-01-01")
     d2 = date.fromisoformat("2020-01-31")
@@ -26,14 +22,3 @@ def test_edit_json():
     d = read_json()
     d["hi"] = "bye bye"
     write_to_json(d)
-
-
-def main():
-    test_tmrw()
-    test_days_between_dates()
-    test_read_json()
-    test_edit_json()
-
-
-if __name__ == "__main__":
-    main()
