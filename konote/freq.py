@@ -30,17 +30,17 @@ def read_json():
 
 def complete_task(task_dict, task_name):
     mod_dict = task_dict.copy()
-    mod_dict[task_name] = "DONE"
+    return {**mod_dict, task_name: "DONE"}
 
 
 def in_progress_task(task_dict, task_name):
     mod_dict = task_dict.copy()
-    mod_dict[task_name] = "IN_PROGRESS"
+    return {**mod_dict, task_name: "IN_PROGRESS"}
 
 
 def todo_task(task_dict, task_name):
     mod_dict = task_dict.copy()
-    mod_dict[task_name] = "TODO"
+    return {**mod_dict, task_name: "TODO"}
 
 
 def main():
