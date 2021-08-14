@@ -15,7 +15,7 @@ def test_read_json():
 
 def test_write_json():
     write_to_json({"hi": "bye"})
-    assert test_read_json() == {"hi": "bye"}
+    assert read_json() == {"hi": "bye"}
 
 
 def test_edit_json():
