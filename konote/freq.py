@@ -32,6 +32,21 @@ def read_json():
         return ujson.load(fout)
 
 
+def complete_task(task_dict, task_name):
+    mod_dict = task_dict.copy()
+    mod_dict[task_name] = "DONE"
+
+
+def in_progress_task(task_dict, task_name):
+    mod_dict = task_dict.copy()
+    mod_dict[task_name] = "IN_PROGRESS"
+
+
+def todo_task(task_dict, task_name):
+    mod_dict = task_dict.copy()
+    mod_dict[task_name] = "TODO"
+
+
 def main():
     today = date.today()
     five_days = get_days_from_now(today, 5)
