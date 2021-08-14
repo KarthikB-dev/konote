@@ -11,9 +11,12 @@ from pathlib import Path
 from typing import Iterable
 
 # reads tasks from the yaml file
-def read_tasks(tasks, task_path):
-    with open(task_path, "r") as fin:
-        tasks = yaml.safe_load(fin)
+def read_tasks(task_path):
+    try:
+        with open(task_path, "r") as fin:
+            tasks = yaml.safe_load(fin)
+    except:
+        pass
     # if the program has been run for the first time
     if tasks == None:
         tasks = {"qt": {}, "pr": {}, "ltg": {}}
@@ -97,7 +100,7 @@ def make_yaml_path():
 
 def main():
     yaml_path = make_yaml_path()
-    tasks = read_tasks({}, yaml_path)
+    tasks = read_tasks(yaml_path)
     args = task_input()
     write_tasks(args, tasks, yaml_path)
 
