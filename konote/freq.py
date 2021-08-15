@@ -8,8 +8,7 @@ def get_tmrw(today):
 
 
 def get_days_from_now(today, days_from_today):
-    new_date = today + timedelta(days=days_from_today)
-    return new_date
+    return today + timedelta(days=days_from_today)
 
 
 def due_today(init_date, curr_date, freq):
@@ -41,14 +40,3 @@ def in_progress_task(task_dict, task_name):
 def todo_task(task_dict, task_name):
     mod_dict = task_dict.copy()
     return {**mod_dict, task_name: "TODO"}
-
-
-def main():
-    today = date.today()
-    five_days = get_days_from_now(today, 5)
-    write_to_json({"hi": "bye"})
-    print(five_days)
-
-
-if __name__ == "__main__":
-    main()

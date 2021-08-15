@@ -1,6 +1,5 @@
 from konote.freq import *
 
-
 def test_read_json():
     in_dict = read_json()
     assert in_dict is not None
@@ -28,3 +27,5 @@ def test_change_task_status():
     assert d == {"Finish konote": "IN_PROGRESS"}
     d = complete_task(d, "Finish konote")
     assert d == {"Finish konote": "DONE"}
+    d = todo_task(d, "Can this add new tasks")
+    assert d == {"Finish konote": "DONE", "Can this add new tasks": "TODO"}
