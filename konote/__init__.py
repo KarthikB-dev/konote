@@ -12,6 +12,7 @@ def main():
     # initializes freq json
     json_path = Path.home() / "konote_files" / "freq.json"
     # TODO test
-    init_dict = {"init_date": date.today()}
-    with open(json_path, "w") as fout:
-        ujson.dump(init_dict, fout)
+    if json_path.is_file():
+        init_dict = {"init_date": date.isoformat(date.today())}
+        with open(json_path, "w") as fout:
+            ujson.dump(init_dict, fout)
