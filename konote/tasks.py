@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
 # from pathlib import Path
 import argparse
-
-import yaml
+import ujson
 
 # from icecream import ic
 import copy
@@ -12,9 +11,10 @@ from typing import Iterable
 
 # reads tasks from the yaml file
 def read_tasks(task_path):
+    tasks = None
     try:
         with open(task_path, "r") as fin:
-            tasks = yaml.safe_load(fin)
+            tasks = ujson.load(fin)
     except:
         pass
     # if the program has been run for the first time
@@ -70,7 +70,7 @@ def write_tasks(args, tasks, kfiles_path):
         else:
             new_tasks[args.task_type][args.task_contents] = None
             with open(kfiles_path, "w") as fout:
-                yaml.dump(new_tasks, fout)
+                ujson.dump(new_tasks, fout)
     else:
         # TODO add support for 'st' or subtask
         if args.task_type == "st":
@@ -89,20 +89,20 @@ def write_tasks(args, tasks, kfiles_path):
 
 
 # creates the folder to store tasks, if it does not exist
-def make_yaml_path():
+def make_json_path():
     kfiles_path = Path.home() / "konote_files"
-    yaml_path = kfiles_path / "Tasks.yaml"
+    json_path = kfiles_path / "Tasks.json"
     already_made_dir = kfiles_path.exists()
     pathlib.Path(kfiles_path).mkdir(exist_ok=True)
-    yaml_path.touch()
-    return yaml_path
+    json_path.touch()
+    return json_path
 
 
 def main():
-    yaml_path = make_yaml_path()
-    tasks = read_tasks(yaml_path)
+    json_path = make_json_path()
+    tasks = read_tasks(json_path)
     args = task_input()
-    write_tasks(args, tasks, yaml_path)
+    write_tasks(args, tasks, json_path)
 
 
 if __name__ == "__main__":
