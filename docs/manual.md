@@ -53,12 +53,14 @@ Konote would be able to remind you of this.
 
 #### __JSON Structure__
 `todos`
+
 * `task_name`
 	* `frequency`
 	* `init_date` 
 			
 
 `freq_log`
+
 * isoformat date 
 	* dictionary of tasks due on that date, and if they are IN_PROGRESS, DONE, or TODO
 	
