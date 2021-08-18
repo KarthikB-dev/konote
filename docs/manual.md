@@ -51,6 +51,17 @@ Eg. if you initialized the program `2021-08-04` and the current date was `2021-0
 
 Konote would be able to remind you of this.
 
+#### __JSON Structure__
+`todos`
+* `task_name`
+	* `frequency`
+	* `init_date` 
+			
+
+`freq_log`
+* isoformat date 
+	* dictionary of tasks due on that date, and if they are IN_PROGRESS, DONE, or TODO
+	
 #### __Konote console input__
 
 Konote will let you do this by having you enter `konote freq init`. The date that you entered this will be recorded.
