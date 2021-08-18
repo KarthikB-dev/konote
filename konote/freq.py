@@ -7,8 +7,18 @@ def init_freq_dict():
     # initializes freq json
     json_path = Path.home() / "konote_files" / "freq.json"
     if not json_path.is_file():
-        init_dict = {"init_date": date.isoformat(date.today())}
-        init_dict["todos"] = None
+        init_dict = {"freq_log": date.isoformat(date.today())}
+        # the freq log: 
+        # Key: isoformat date
+        # Value: another dictionary
+        #           ⮩ Key: task due on that day
+        #           ⮩ Value: whether the task is IN_PROGRESS, DONE, or TODO
+        init_dict["todos"] = {} 
+        # todos:
+        # Key: task_name (string)
+        # Value: another dictionary
+        #           ⮩ Key: 'frequency', Value: <integer giving frequency> 
+        #           ⮩ Key: 'init_date', Value: <isoformat date of when the todo was added>
         with open(json_path, "w") as fout:
             ujson.dump(init_dict, fout)
 
