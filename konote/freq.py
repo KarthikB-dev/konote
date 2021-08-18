@@ -3,6 +3,16 @@ from pathlib import Path
 import ujson
 
 
+def init_freq_dict():
+    # initializes freq json
+    json_path = Path.home() / "konote_files" / "freq.json"
+    if not json_path.is_file():
+        init_dict = {"init_date": date.isoformat(date.today())}
+        init_dict["todos"] = None
+        with open(json_path, "w") as fout:
+            ujson.dump(init_dict, fout)
+
+
 def get_tmrw(today):
     return today + timedelta(days=1)
 
