@@ -27,6 +27,18 @@ def init_freq_dict():
             ujson.dump(init_dict, fout)
 
 
+# TODO write function to add all dates up to this one
+# make it look at the initial date, then fill in all the following ones
+
+
+def add_task(freq_dict, task_name, freq, init_date):
+    # TODO test this
+    mod_dict = freq_dict.copy()
+    if "NO_TASKS" in mod_dict:
+        del freq_dict["NO_TASKS"]
+    return {**freq_dict, task_name: {freq, init_date}}
+
+
 def get_tmrw(today):
     return today + timedelta(days=1)
 
