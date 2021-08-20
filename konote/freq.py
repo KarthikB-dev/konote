@@ -36,8 +36,11 @@ def init_freq_dict():
 # The last date that was added
 # It gets today's date
 # It makes a list of all the dates between the earliest date and todays' date
-def add_all_dates(freq_dict):
-    dates = freq_dict["freq_log"].keys()
+def add_all_dates():
+    dates = read_json()["freq_log"].keys()
+    error_msg = "ERROR: COULD NOT FIND FREQ JSON FILE"
+    if dates == error_msg:
+        return error_msg
     # if today's date is included, nothing needs to be done
     # comment this out before commit
     # ic(dates)
@@ -81,8 +84,11 @@ def write_to_json(d):
 
 def read_json():
     json_path = Path.home() / "konote_files" / "freq.json"
-    with open(json_path, "r") as fout:
-        return ujson.load(fout)
+    try:
+        with open(json_path, "r") as fout:
+            return ujson.load(fout)
+    except:
+        return "ERROR: COULD NOT FIND FREQ JSON FILE"
 
 
 def complete_task(task_dict, task_name):
@@ -100,4 +106,4 @@ def todo_task(task_dict, task_name):
     return {**mod_dict, task_name: "TODO"}
 
 
-# add_all_dates(read_json())
+# add_all_dates()
