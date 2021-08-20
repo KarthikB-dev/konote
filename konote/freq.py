@@ -2,6 +2,9 @@ from datetime import datetime, timedelta, date
 from pathlib import Path
 import ujson
 
+# comment this out before commit
+# from icecream import ic
+
 
 def init_freq_dict():
     # initializes freq json
@@ -9,9 +12,7 @@ def init_freq_dict():
     if not json_path.is_file():
         # NO_TASKS means that no tasks are due that day
         # NO_STATUS means that beacause there is no real task, it does not have a status
-        init_dict = {
-            "freq_log": {date.isoformat(date.today()): {"NO_TASKS": "NO_STATUS"}}
-        }
+        init_dict = {"freq_log": {get_today(): {"NO_TASKS": "NO_STATUS"}}}
         # the freq log:
         # Key: isoformat date
         # Value: another dictionary
@@ -29,6 +30,27 @@ def init_freq_dict():
 
 # TODO write function to add all dates up to this one
 # make it look at the initial date, then fill in all the following ones
+# It looks at all the init dates for the todos
+# Out of these dates, it takes the earliest one, and stores it in early_date
+# If dates have already been filled in, it sets the earliest date to
+# The last date that was added
+# It gets today's date
+# It makes a list of all the dates between the earliest date and todays' date
+def add_all_dates(freq_dict):
+    dates = freq_dict["freq_log"].keys()
+    # if today's date is included, nothing needs to be done
+    # comment this out before commit
+    # ic(dates)
+    today = get_today()
+    if dates is None:
+        return "ERROR: DATES IS NONE"
+    if today in dates:
+        return "ALL_DATES_ALREADY_PRESENT"
+
+
+# TODO add function to fill in tasks for all dates (called in add_all_dates)
+def get_today():
+    return date.isoformat(date.today())
 
 
 def add_task(freq_dict, task_name, freq, init_date):
@@ -76,3 +98,6 @@ def in_progress_task(task_dict, task_name):
 def todo_task(task_dict, task_name):
     mod_dict = task_dict.copy()
     return {**mod_dict, task_name: "TODO"}
+
+
+# add_all_dates(read_json())
