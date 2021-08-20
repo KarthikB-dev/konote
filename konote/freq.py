@@ -18,7 +18,7 @@ def init_freq_dict():
         # Value: another dictionary
         #           ⮩ Key: task due on that day
         #           ⮩ Value: whether the task is IN_PROGRESS, DONE, or TODO
-        init_dict["todos"] = {}
+        init_dict["todos"] = {"NO_TASKS": {-1, "NO_DATE"}}
         # todos:
         # Key: task_name (string)
         # Value: another dictionary
