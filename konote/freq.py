@@ -18,7 +18,8 @@ def init_freq_dict():
         # Value: another dictionary
         #           ⮩ Key: task due on that day
         #           ⮩ Value: whether the task is IN_PROGRESS, DONE, or TODO
-        init_dict["todos"] = {"NO_TASKS": {-1, "NO_DATE"}}
+        # A frequency of -1 and NO_DATE are to show that these are not real tasks
+        init_dict["todos"] = {"NO_TASKS": {"frequency": -1, "init_date": "NO_DATE"}}
         # todos:
         # Key: task_name (string)
         # Value: another dictionary
@@ -38,12 +39,11 @@ def init_freq_dict():
 # It makes a list of all the dates between the earliest date and todays' date
 def add_all_dates():
     dates = read_json()["freq_log"].keys()
+    # Handling potential errors
     error_msg = "ERROR: COULD NOT FIND FREQ JSON FILE"
     if dates == error_msg:
         return error_msg
     # if today's date is included, nothing needs to be done
-    # comment this out before commit
-    # ic(dates)
     today = get_today()
     if dates is None:
         return "ERROR: DATES IS NONE"
