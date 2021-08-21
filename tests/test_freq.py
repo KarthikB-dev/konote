@@ -1,6 +1,7 @@
 from konote.freq import *
 from datetime import datetime, timedelta, date
-from icecream import ic
+
+# from icecream import ic
 
 
 # def test_read_json():
@@ -47,3 +48,14 @@ from icecream import ic
 
 # def test_init_freq_dict():
 #     init_freq_dict()
+
+
+def test_add_all_dates():
+    msg = add_all_dates()
+    assert msg == "SUCCESSFUL_RUN" or "ALL_DATES_ALREADY_PRESENT"
+
+
+def test_add_task():
+    today = get_today()
+    freq_dict = add_task(read_json(), "bicep curls", 2, today)
+    assert freq_dict["todos"]["bicep curls"] == {"frequency": 2, "init_date": today}
