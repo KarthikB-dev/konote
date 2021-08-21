@@ -1,6 +1,6 @@
 from konote.freq import *
 from datetime import datetime, timedelta, date
-from icecream import ic
+# from icecream import ic
 
 
 def test_read_json():
