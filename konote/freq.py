@@ -78,8 +78,11 @@ def due_today(init_date, curr_date, freq):
 
 def write_to_json(d):
     json_path = Path.home() / "konote_files" / "freq.json"
-    with open(json_path, "w") as fout:
-        ujson.dump(d, fout)
+    try:
+        with open(json_path, "w") as fout:
+            ujson.dump(d, fout)
+    except:
+        return "ERROR: COULD NOT FIND FREQ JSON FILE"
 
 
 def read_json():
