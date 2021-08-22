@@ -29,7 +29,6 @@ def init_freq_dict():
             ujson.dump(init_dict, fout)
 
 
-# TODO write function to add all dates up to this one
 # make it look at the initial date, then fill in all the following ones
 # It looks at all the init dates for the todos
 # Out of these dates, it takes the earliest one, and stores it in early_date
@@ -39,8 +38,7 @@ def init_freq_dict():
 # It makes a list of all the dates between the earliest date and todays' date
 def add_all_dates():
     freq_json = read_json()
-    dates = read_json()["freq_log"].keys()
-    ic(dates)
+    dates = freq_json["freq_log"].keys()
     # Handling potential errors
     error_msg = "ERROR: COULD NOT FIND FREQ JSON FILE"
     if dates == error_msg:
@@ -50,17 +48,22 @@ def add_all_dates():
     if dates is None:
         return "ERROR: DATES IS NONE"
     latest_date = max(dates)
+    # If today has already been filled in, nothing needs to be done
     if today == latest_date:
         return "SUCCESS: ALL_DATES_ALREADY_PRESENT"
-    # TODO finish this!
     today_date_obj = date.fromisoformat(today)
     latest_date_obj = date.fromisoformat(latest_date)
-    # ic(earliest_date)
-    # ic(latest_date)
+    days_to_add = (today_date_obj - latest_date_obj).days
+    if days_to_add < 0:
+        return "ERROR: FUTURE DATES ADDED"
+    for int_delta in range(1, days_to_add + 1):
+        add_date = latest_date_obj + timedelta(days=int_delta)
+        freq_json["freq_log"][add_date.isoformat()] = {"NO_TASKS": "NO_STATUS"}
+    # TODO call function that fills in the tasks
+    write_to_json(freq_json)
     return "SUCCESSFUL_RUN"
 
 
-# TODO add function to fill in tasks for all dates (called in add_all_dates)
 def get_today():
     return date.isoformat(date.today())
 
@@ -116,6 +119,3 @@ def in_progress_task(task_dict, task_name):
 def todo_task(task_dict, task_name):
     mod_dict = task_dict.copy()
     return {**mod_dict, task_name: "TODO"}
-
-
-# add_all_dates()
