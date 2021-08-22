@@ -134,3 +134,16 @@ def in_progress_task(task_dict, task_name):
 def todo_task(task_dict, task_name):
     mod_dict = task_dict.copy()
     return {**mod_dict, task_name: "TODO"}
+
+
+def get_day_of_week(date_obj):
+    days = [
+        "Sunday",
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+    ]
+    return days[date_obj.isoweekday()]
