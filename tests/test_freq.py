@@ -59,3 +59,11 @@ def test_add_task():
     today = get_today()
     freq_dict = add_task(read_json(), "bicep curls", 2, today)
     assert freq_dict["todos"]["bicep curls"] == {"frequency": 2, "init_date": today}
+
+
+def test_get_due_dates():
+    five_day = get_due_dates(
+        {"init_date": date.isoformat(date.today() - timedelta(days=25)), "freq": 5}
+    )
+    for i in range(6):
+        assert date.isoformat(date.today() - timedelta(days=i * 5)) in five_day
