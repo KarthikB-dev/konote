@@ -59,24 +59,39 @@ def add_all_dates():
     for int_delta in range(1, days_to_add + 1):
         add_date = latest_date_obj + timedelta(days=int_delta)
         freq_json["freq_log"][add_date.isoformat()] = {"NO_TASKS": "NO_STATUS"}
-    # TODO call function that fills in the tasks
+    freq_json["freq_log"] = fill_in_todos(freq_json["freq_log])
     write_to_json(freq_json)
     return "SUCCESSFUL_RUN"
 
 
 def fill_in_todos(freq_dict):
-    mod_freq_log = freq_dict["freq_log"].copy()
+    # TODO: test this!
     # iterate through the list of todos
     # for each todo, iterate through its due dates
     # the due dates are extracted are calculated using a function get_due_dates
     # if the todo has already been filled in for one of the dates, do not change that date
     # if the todo is absent, add it to that date's list of todos with its status set to TODO
-
+    mod_freq_log = freq_dict["freq_log"].copy()
+    todo_dict = freq_dict["todos"]
+    for curr_todo in todo_dict:
+        due_dates = get_due_dates(todo_dict[curr_todo])
+        for curr_date in due_dates:
+            if not curr_todo in mod_freq_log[curr_date]:
+                mod_freq_log[curr_todo] = "TODO"
+    return mod_freq_log
 
 # For a given task, get all the dates for which it must be completed (from init date to today)
 def get_due_dates(task_dict):
     if task_dict["freq"] == -1 or task_dict["init_date"] == "NO_DATE":
         return "NO_DATES"
+    init_date_obj = date.fromisoformat(task_dict["init_date"])
+    days_since_init = (date.today() - init_date_obj).days
+    out_list = []
+    for int_delta in range(0, days_since_init + 1, task_dict["freq"]):
+        out_list = out_list + [
+            date.isoformat(init_date_obj + timedelta(days=int_delta))
+        ]
+    return out_list
 
 
 def get_today():
