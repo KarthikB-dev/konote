@@ -64,6 +64,21 @@ def add_all_dates():
     return "SUCCESSFUL_RUN"
 
 
+def fill_in_todos(freq_dict):
+    mod_freq_log = freq_dict["freq_log"].copy()
+    # iterate through the list of todos
+    # for each todo, iterate through its due dates
+    # the due dates are extracted are calculated using a function get_due_dates
+    # if the todo has already been filled in for one of the dates, do not change that date
+    # if the todo is absent, add it to that date's list of todos with its status set to TODO
+
+
+# For a given task, get all the dates for which it must be completed (from init date to today)
+def get_due_dates(task_dict):
+    if task_dict["freq"] == -1 or task_dict["init_date"] == "NO_DATE":
+        return "NO_DATES"
+
+
 def get_today():
     return date.isoformat(date.today())
 
