@@ -39,8 +39,8 @@ def init_freq_dict():
 # It makes a list of all the dates between the earliest date and todays' date
 def add_all_dates():
     freq_json = read_json()
-    ic(freq_json)
     dates = read_json()["freq_log"].keys()
+    ic(dates)
     # Handling potential errors
     error_msg = "ERROR: COULD NOT FIND FREQ JSON FILE"
     if dates == error_msg:
@@ -49,8 +49,14 @@ def add_all_dates():
     today = get_today()
     if dates is None:
         return "ERROR: DATES IS NONE"
-    if today in dates:
-        return "ALL_DATES_ALREADY_PRESENT"
+    latest_date = max(dates)
+    if today == latest_date:
+        return "SUCCESS: ALL_DATES_ALREADY_PRESENT"
+    # TODO finish this!
+    today_date_obj = date.fromisoformat(today)
+    latest_date_obj = date.fromisoformat(latest_date)
+    # ic(earliest_date)
+    # ic(latest_date)
     return "SUCCESSFUL_RUN"
 
 
@@ -60,7 +66,6 @@ def get_today():
 
 
 def add_task(freq_dict, task_name, freq, init_date):
-    # TODO test this
     mod_dict = freq_dict.copy()
     if "NO_TASKS" in mod_dict["todos"]:
         del mod_dict["todos"]["NO_TASKS"]
@@ -113,4 +118,4 @@ def todo_task(task_dict, task_name):
     return {**mod_dict, task_name: "TODO"}
 
 
-# ic(add_all_dates())
+# add_all_dates()
