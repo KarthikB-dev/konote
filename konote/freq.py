@@ -59,7 +59,7 @@ def add_all_dates():
     for int_delta in range(1, days_to_add + 1):
         add_date = latest_date_obj + timedelta(days=int_delta)
         freq_json["freq_log"][add_date.isoformat()] = {"NO_TASKS": "NO_STATUS"}
-    freq_json["freq_log"] = fill_in_todos(freq_json["freq_log])
+    freq_json["freq_log"] = fill_in_todos(freq_json["freq_log"])
     write_to_json(freq_json)
     return "SUCCESSFUL_RUN"
 
