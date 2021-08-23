@@ -52,7 +52,7 @@ from datetime import datetime, timedelta, date
 
 def test_add_all_dates():
     msg = add_all_dates()
-    assert msg == "SUCCESSFUL_RUN" or "ALL_DATES_ALREADY_PRESENT"
+    assert msg == "SUCCESSFUL_RUN" or "SUCCESS: ALL_DATES_ALREADY_PRESENT"
 
 
 def test_add_task():
