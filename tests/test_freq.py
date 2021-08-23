@@ -63,7 +63,17 @@ def test_add_task():
 
 def test_get_due_dates():
     five_day = get_due_dates(
-        {"init_date": date.isoformat(date.today() - timedelta(days=25)), "freq": 5}
+        {"init_date": date.isoformat(date.today() - timedelta(days=25)), "frequency": 5}
     )
     for i in range(6):
         assert date.isoformat(date.today() - timedelta(days=i * 5)) in five_day
+
+
+def test_due_today():
+    # Test 1: With dates
+    init_date = date.today() - timedelta(days=5)
+    assert due_today(init_date, 5) == True
+    # Test 2: With weekly todos
+    init_date = "NO_DATE"
+    freq = get_day_of_week(date.today())
+    assert due_today(init_date, freq) == True
