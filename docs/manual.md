@@ -69,3 +69,13 @@ Konote would be able to remind you of this.
 Konote will let you do this by having you enter `konote freq init`. The date that you entered this will be recorded.
 
 To add new frequency based todos, you enter `konote freq add <name of task> <frequency of task>`
+
+Certain tasks must be done weekly on a given day of the week. For example, you may need
+to take your dog out for a walk every Monday, or take the trash out every Sunday. If this is the case, then the frequency listed
+will not be an integer, but a given day of the week.
+
+For example, for putting out the trash, we would have
+
+* `Put the trash out`
+	* 	`frequency`: "Sunday"
+	*	`init_date`: 2020-01-01
