@@ -59,13 +59,12 @@ def add_all_dates():
     for int_delta in range(1, days_to_add + 1):
         add_date = latest_date_obj + timedelta(days=int_delta)
         freq_json["freq_log"][add_date.isoformat()] = {"NO_TASKS": "NO_STATUS"}
-    freq_json["freq_log"] = fill_in_todos(freq_json["freq_log"])
+    freq_json["freq_log"] = fill_in_todos(freq_json)
     write_to_json(freq_json)
     return "SUCCESSFUL_RUN"
 
 
 def fill_in_todos(freq_dict):
-    # TODO: test this!
     # iterate through the list of todos
     # for each todo, iterate through its due dates
     # the due dates are extracted are calculated using a function get_due_dates
@@ -75,6 +74,8 @@ def fill_in_todos(freq_dict):
     todo_dict = freq_dict["todos"]
     for curr_todo in todo_dict:
         due_dates = get_due_dates(todo_dict[curr_todo])
+        if due_dates == "NO_DATES":
+            return mod_freq_log
         for curr_date in due_dates:
             if not curr_todo in mod_freq_log[curr_date]:
                 mod_freq_log[curr_todo] = "TODO"
@@ -83,12 +84,12 @@ def fill_in_todos(freq_dict):
 
 # For a given task, get all the dates for which it must be completed (from init date to today)
 def get_due_dates(task_dict):
-    if task_dict["freq"] == -1 or task_dict["init_date"] == "NO_DATE":
+    if task_dict["frequency"] == -1 or task_dict["init_date"] == "NO_DATE":
         return "NO_DATES"
     init_date_obj = date.fromisoformat(task_dict["init_date"])
     days_since_init = (date.today() - init_date_obj).days
     out_list = []
-    for int_delta in range(0, days_since_init + 1, task_dict["freq"]):
+    for int_delta in range(0, days_since_init + 1, task_dict["frequency"]):
         out_list = out_list + [
             date.isoformat(init_date_obj + timedelta(days=int_delta))
         ]
@@ -117,10 +118,12 @@ def get_days_from_now(today, days_from_today):
 
 def due_today(init_date, freq):
     # TODO: test this!
+    # TODO: add support for monthly todos, or a combination
+    # of weekly, monthly, and yearly todos
     if type(freq) is str:
-        todays_day_of_week = get_day_of_week(get_today())
-        return get_day_of_week(todays_day_of_week) == freq
-    return (get_today() - init_date).days % freq == 0
+        todays_day_of_week = get_day_of_week(date.today())
+        return todays_day_of_week == freq
+    return (date.today() - init_date).days % freq == 0
 
 
 def write_to_json(d):
