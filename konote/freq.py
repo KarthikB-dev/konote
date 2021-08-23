@@ -80,6 +80,7 @@ def fill_in_todos(freq_dict):
                 mod_freq_log[curr_todo] = "TODO"
     return mod_freq_log
 
+
 # For a given task, get all the dates for which it must be completed (from init date to today)
 def get_due_dates(task_dict):
     if task_dict["freq"] == -1 or task_dict["init_date"] == "NO_DATE":
@@ -115,6 +116,10 @@ def get_days_from_now(today, days_from_today):
 
 
 def due_today(init_date, curr_date, freq):
+    # TODO: test this!
+    if type(freq) is str:
+        todays_day_of_week = get_day_of_week(date.today())
+        return todays_day_of_week == freq
     return (curr_date - init_date).days % freq == 0
 
 
