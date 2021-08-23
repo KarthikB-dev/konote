@@ -115,12 +115,12 @@ def get_days_from_now(today, days_from_today):
     return today + timedelta(days=days_from_today)
 
 
-def due_today(init_date, curr_date, freq):
+def due_today(init_date, freq):
     # TODO: test this!
     if type(freq) is str:
-        todays_day_of_week = get_day_of_week(date.today())
-        return todays_day_of_week == freq
-    return (curr_date - init_date).days % freq == 0
+        todays_day_of_week = get_day_of_week(get_today())
+        return get_day_of_week(todays_day_of_week) == freq
+    return (get_today() - init_date).days % freq == 0
 
 
 def write_to_json(d):
