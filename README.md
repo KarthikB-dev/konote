@@ -10,6 +10,9 @@ One of its main planned features is being able to nest tasks. For example, you m
 
 to do the dishes. This task contains other tasks within it, such as buying dish soap or a sponge.
 
+
+Another feature of konote that is very valuable is frequency based todos. You could have tasks that repeat everyday, every 3 days, every Friday, or even every January!
+
 ## Why the name _konote_?
 This application will deal a _knockout blow_ to your laziness and poor work ethic!
 And it helps you take notes.
