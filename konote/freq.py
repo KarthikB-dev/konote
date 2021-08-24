@@ -117,12 +117,35 @@ def get_days_from_now(today, days_from_today):
 
 
 def due_today(init_date, freq):
-    # TODO: test this!
-    # TODO: add support for monthly todos, or a combination
-    # of weekly, monthly, and yearly todos
     if type(freq) is str:
-        todays_day_of_week = get_day_of_week(date.today())
-        return todays_day_of_week == freq
+        days = [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday",
+        ]
+        months = [
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December",
+        ]
+        if freq in days:
+            todays_day_of_week = get_day_of_week(date.today())
+            return todays_day_of_week == freq
+        elif freq in months:
+            pass
     return (date.today() - init_date).days % freq == 0
 
 
@@ -170,3 +193,22 @@ def get_day_of_week(date_obj):
         "Sunday",
     ]
     return days[date_obj.isoweekday() - 1]
+
+
+def due_this_month(month):
+    months = [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December",
+    ]
+    index = date.today().month - 1
+    return month == months[index]
