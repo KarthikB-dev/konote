@@ -100,11 +100,11 @@ def get_today():
     return date.isoformat(date.today())
 
 
-def add_task(freq_dict, task_name, freq, init_date):
+def add_task(freq_dict, task_name, freq):
     mod_dict = freq_dict.copy()
     if "NO_TASKS" in mod_dict["todos"]:
         del mod_dict["todos"]["NO_TASKS"]
-    mod_dict["todos"] = {task_name: {"frequency": freq, "init_date": init_date}}
+    mod_dict["todos"] = {task_name: {"frequency": freq, "init_date": get_today()}}
     return mod_dict
 
 
