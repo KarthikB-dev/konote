@@ -21,5 +21,4 @@ And it helps you take notes.
 
 
 ## Operating system support
-Note that konote has only been tested on GNU/Linux systems, but because it makes use of operating
-system agnostic packages (such as pathlib), it may work on other operating systems as well.
+Note that while konote has only been tested on GNU/Linux systems (specifically Ubuntu), it may work on other operating systems because it makes use of system agnostic packages (such as `pathlib`)
