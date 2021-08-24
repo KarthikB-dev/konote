@@ -57,7 +57,10 @@ def test_add_all_dates():
 
 def test_add_task():
     freq_dict = add_task(read_json(), "bicep curls", 2)
-    assert freq_dict["todos"]["bicep curls"] == {"frequency": 2, "init_date": get_today()}
+    assert freq_dict["todos"]["bicep curls"] == {
+        "frequency": 2,
+        "init_date": get_today(),
+    }
 
 
 def test_get_due_dates():
@@ -76,3 +79,26 @@ def test_due_today():
     init_date = "NO_DATE"
     freq = get_day_of_week(date.today())
     assert due_today(init_date, freq) == True
+
+
+def test_due_this_month():
+    not_this_month = date.today() - timedelta(31)
+    months = [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December",
+    ]
+    not_this_month_str = months[not_this_month.month - 1]
+    assert due_this_month(not_this_month_str) == False
+    this_month = date.today()
+    this_month_str = months[this_month.month - 1]
+    assert due_this_month(this_month_str) == True
