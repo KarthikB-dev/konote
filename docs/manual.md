@@ -1,38 +1,42 @@
-# konote 
+# konote
 
 Konote is designed to be a multipurpose productivity tool. It currently only supports task generation.
 
 ## Tasks
 
-There are three main types of tasks - long term goals, projects, and quick todos. 
+There are three main types of tasks - long term goals, projects, and quick todos.
 
-The main purpose of these tasks is to log todos that do not have a due date. 
+The main purpose of these tasks is to log todos that do not have a due date.
 
 ### Long Term Goals
+
 These are things like learning a new language, acquiring a new skill, or taking a course.
 
 In the console, type `konote ltg <name of long term goal>` to add one to your list.
 
 ### Projects
-These are the next level below. 
+
+These are the next level below.
 It might be something like learning a specific grammar structure within the language, learning a certain skill, or completing a project within that course.
 
 In the console, type `konote pr <name of long term goal>` to add one to your list.
 
 ### Quick Todos
+
 These are things you can get done in less than an hour, like doing a problem set,
 getting a workout done, or cleaning your room.
 
 In the console, type `konote qt <name of long term goal>` to add one to your list.
 
 ### Viewing Tasks You Made
+
 Go to your home directory, then a folder named `konote_files` and find a file called `Tasks.yaml`.
 
 This file stores all the tasks you have made. You can edit it directly, and new tasks will be created
 
 ## Coming Features
 
-### Frequency Based todos. 
+### Frequency Based todos
 
 Each tasks has a certain frequency associated with it.
 
@@ -52,18 +56,18 @@ Eg. if you initialized the program `2021-08-04` and the current date was `2021-0
 Konote would be able to remind you of this.
 
 #### __JSON Structure__
+
 `todos`
 
 * `task_name`
-	* `frequency`
-	* `init_date` 
-			
+  * `frequency`
+  * `init_date`
 
 `freq_log`
 
-* isoformat date 
-	* dictionary of tasks due on that date, and if they are IN_PROGRESS, DONE, or TODO
-	
+* isoformat date
+  * dictionary of tasks due on that date, and if they are IN_PROGRESS, DONE, or TODO
+
 #### __Konote console input__
 
 Konote will let you do this by having you enter `konote freq init`. The date that you entered this will be recorded.
@@ -76,6 +80,6 @@ will not be an integer, but a given day of the week.
 
 For example, for putting out the trash, we would have
 
-* `Put the trash out`
-	* 	`frequency`: "Sunday"
-	*	`init_date`: 2020-01-01
+* "Put the trash out":
+  * `frequency`: "Sunday"
+  * `init_date`: "2020-01-01"
