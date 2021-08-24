@@ -83,3 +83,13 @@ For example, for putting out the trash, we would have
 * "Put the trash out":
   * `frequency`: "Sunday"
   * `init_date`: "2020-01-01"
+
+ You could also have monthly todos. For example, you might go to the beach every July.
+
+The structure of the JSON would be as shown below:
+
+* `Go to the beach`
+  * `frequency`: "July"
+  * `init_date`: "2020-01-01"
+
+If today is a day in July, then the task is due today.
