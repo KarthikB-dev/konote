@@ -145,7 +145,7 @@ def due_today(init_date, freq):
             todays_day_of_week = get_day_of_week(date.today())
             return todays_day_of_week == freq
         elif freq in months:
-            pass
+            return due_this_month(freq)
     return (date.today() - init_date).days % freq == 0
 
 
