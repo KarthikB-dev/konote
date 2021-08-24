@@ -56,9 +56,8 @@ def test_add_all_dates():
 
 
 def test_add_task():
-    today = get_today()
-    freq_dict = add_task(read_json(), "bicep curls", 2, today)
-    assert freq_dict["todos"]["bicep curls"] == {"frequency": 2, "init_date": today}
+    freq_dict = add_task(read_json(), "bicep curls", 2)
+    assert freq_dict["todos"]["bicep curls"] == {"frequency": 2, "init_date": get_today()}
 
 
 def test_get_due_dates():
