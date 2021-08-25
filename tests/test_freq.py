@@ -4,11 +4,12 @@ from datetime import datetime, timedelta, date
 # from icecream import ic
 
 
-# def test_read_json():
-#     in_dict = read_json()
-#     assert in_dict is not None
-#
-#
+def test_read_json():
+    in_dict = read_json()
+    assert in_dict is not None
+    assert "ERROR" not in in_dict
+
+
 # def test_write_json():
 #     write_to_json({"Finish konote": "TODO"})
 #     assert read_json() == {"Finish konote": "TODO"}
@@ -102,3 +103,8 @@ def test_due_this_month():
     this_month = date.today()
     this_month_str = months[this_month.month - 1]
     assert due_this_month(this_month_str) == True
+
+
+def test_todays_tasks():
+    todays_tasks = todays_tasks()
+    assert todays_tasks is not None
