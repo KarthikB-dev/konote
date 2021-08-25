@@ -38,6 +38,7 @@ def init_freq_dict():
 # It makes a list of all the dates between the earliest date and todays' date
 def add_all_dates():
     freq_json = read_json()
+    assert "ERROR" not in freq_json
     dates = freq_json["freq_log"].keys()
     # Handling potential errors
     error_msg = "ERROR: COULD NOT FIND FREQ JSON FILE"
