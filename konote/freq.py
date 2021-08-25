@@ -213,3 +213,16 @@ def due_this_month(month):
     ]
     index = date.today().month - 1
     return month == months[index]
+
+
+# prints out today's tasks
+def todays_tasks():
+    add_all_dates()
+    json = read_json()
+    assert "ERROR" not in json
+    todays_tasks = json["freq_log"][get_today()]
+    if "NO_TASKS" not in todays_tasks:
+        for task in todays_tasks:
+            status = todays_tasks[task]
+            print(task + ": " + status)
+    return todays_tasks
