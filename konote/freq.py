@@ -79,8 +79,10 @@ def fill_in_todos(freq_dict):
         if due_dates == "NO_DATES":
             return mod_freq_log
         for curr_date in due_dates:
+            if "NO_TASKS" in mod_freq_log[curr_date]:
+                del mod_freq_log[curr_date]["NO_TASKS"]
             if not curr_todo in mod_freq_log[curr_date]:
-                mod_freq_log[curr_todo] = "TODO"
+                mod_freq_log[curr_date][curr_todo] = "TODO"
     return mod_freq_log
 
 
@@ -106,7 +108,7 @@ def add_task(freq_dict, task_name, freq):
     mod_dict = freq_dict.copy()
     if "NO_TASKS" in mod_dict["todos"]:
         del mod_dict["todos"]["NO_TASKS"]
-    mod_dict["todos"] = {task_name: {"frequency": freq, "init_date": get_today()}}
+    mod_dict["todos"][task_name] = {"frequency": freq, "init_date": get_today()}
     return mod_dict
 
 
@@ -123,7 +125,6 @@ def task_input():
 
 def task_output():
     # TODO: test this!
-    assert "ERROR" not in add_all_dates()
     args = task_input()
     freq_json = read_json()
     assert "ERROR" not in freq_json
@@ -153,8 +154,13 @@ def task_output():
     freq = args.frequency
     if args.frequency not in days and args.frequency not in months:
         # If the frequency is not a day or month, it should be an int
-        freq = int(freq)
+        try:
+            freq = int(freq)
+        except:
+            return "ERROR: INVALID TAKS TYPE"
     write_to_json(add_task(freq_json, args.task_name, freq))
+    assert "ERROR" not in add_all_dates()
+    return "SUCCESS"
 
 
 def get_tmrw(today):
@@ -274,3 +280,11 @@ def todays_tasks():
             status = todays_tasks[task]
             print(task + ": " + status)
     return todays_tasks
+
+
+def main():
+    assert "ERROR" not in task_output()
+
+
+if __name__ == "__main__":
+    main()
