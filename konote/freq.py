@@ -128,27 +128,27 @@ def task_output():
     freq_json = read_json()
     assert "ERROR" not in freq_json
     days = [
-         "Monday",
-         "Tuesday",
-         "Wednesday",
-         "Thursday",
-         "Friday",
-         "Saturday",
-         "Sunday",
-     ]
-     months = [
-         "January",
-         "February",
-         "March",
-         "April",
-         "May",
-         "June",
-         "July",
-         "August",
-         "September",
-         "October",
-         "November",
-         "December",
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday",
+    ]
+    months = [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December",
     ]
     freq = args.frequency
     if args.frequency not in days and args.frequency not in months:
