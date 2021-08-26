@@ -110,6 +110,53 @@ def add_task(freq_dict, task_name, freq):
     return mod_dict
 
 
+def task_input():
+    # TODO: test this!
+    parser = argparse.ArgumentParser()
+    parser.add_argument("task_name", help="the name of the task you want to add")
+    parser.add_argument(
+        "frequency",
+        help="How often you want to do the task. Supports entry for a day of the week",
+    )
+    return parser.parse_args()
+
+
+def task_output():
+    # TODO: test this!
+    assert "ERROR" not in add_all_dates()
+    args = task_input()
+    freq_json = read_json()
+    assert "ERROR" not in freq_json
+    days = [
+         "Monday",
+         "Tuesday",
+         "Wednesday",
+         "Thursday",
+         "Friday",
+         "Saturday",
+         "Sunday",
+     ]
+     months = [
+         "January",
+         "February",
+         "March",
+         "April",
+         "May",
+         "June",
+         "July",
+         "August",
+         "September",
+         "October",
+         "November",
+         "December",
+    ]
+    freq = args.frequency
+    if args.frequency not in days and args.frequency not in months:
+        # If the frequency is not a day or month, it should be an int
+        freq = int(freq)
+    write_to_json(add_task(freq_json, args.task_name, freq))
+
+
 def get_tmrw(today):
     return today + timedelta(days=1)
 
