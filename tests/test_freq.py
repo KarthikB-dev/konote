@@ -106,5 +106,5 @@ def test_due_this_month():
 
 
 def test_todays_tasks():
-    todays_tasks = todays_tasks()
-    assert todays_tasks is not None
+    today_tasks = todays_tasks()
+    assert today_tasks is not None
