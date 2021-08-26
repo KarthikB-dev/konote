@@ -1,6 +1,7 @@
 from datetime import datetime, timedelta, date
 from pathlib import Path
 import ujson
+import argparse
 
 # comment this out before commit
 # from icecream import ic
@@ -50,16 +51,15 @@ def add_all_dates():
         return "ERROR: DATES IS NONE"
     latest_date = max(dates)
     # If today has already been filled in, nothing needs to be done
-    if today == latest_date:
-        return "SUCCESS: ALL_DATES_ALREADY_PRESENT"
-    today_date_obj = date.fromisoformat(today)
-    latest_date_obj = date.fromisoformat(latest_date)
-    days_to_add = (today_date_obj - latest_date_obj).days
-    if days_to_add < 0:
-        return "ERROR: FUTURE DATES ADDED"
-    for int_delta in range(1, days_to_add + 1):
-        add_date = latest_date_obj + timedelta(days=int_delta)
-        freq_json["freq_log"][add_date.isoformat()] = {"NO_TASKS": "NO_STATUS"}
+    if today != latest_date:
+        today_date_obj = date.fromisoformat(today)
+        latest_date_obj = date.fromisoformat(latest_date)
+        days_to_add = (today_date_obj - latest_date_obj).days
+        if days_to_add < 0:
+            return "ERROR: FUTURE DATES ADDED"
+        for int_delta in range(1, days_to_add + 1):
+            add_date = latest_date_obj + timedelta(days=int_delta)
+            freq_json["freq_log"][add_date.isoformat()] = {"NO_TASKS": "NO_STATUS"}
     freq_json["freq_log"] = fill_in_todos(freq_json)
     write_to_json(freq_json)
     return "SUCCESSFUL_RUN"
@@ -71,6 +71,7 @@ def fill_in_todos(freq_dict):
     # the due dates are extracted are calculated using a function get_due_dates
     # if the todo has already been filled in for one of the dates, do not change that date
     # if the todo is absent, add it to that date's list of todos with its status set to TODO
+    # TODO add support for days of the week
     mod_freq_log = freq_dict["freq_log"].copy()
     todo_dict = freq_dict["todos"]
     for curr_todo in todo_dict:
