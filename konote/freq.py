@@ -1,6 +1,9 @@
 from datetime import datetime, timedelta, date
 from pathlib import Path
-import ujson
+try:
+    import ujson as json
+except ImportError:
+    import json
 import argparse
 
 # comment this out before commit
@@ -27,7 +30,7 @@ def init_freq_dict():
         #           ⮩ Key: 'frequency', Value: <integer giving frequency>
         #           ⮩ Key: 'init_date', Value: <isoformat date of when the todo was added>
         with open(json_path, "w") as fout:
-            ujson.dump(init_dict, fout)
+            json.dump(init_dict, fout)
 
 
 # make it look at the initial date, then fill in all the following ones
@@ -90,6 +93,7 @@ def fill_in_todos(freq_dict):
 def get_due_dates(task_dict):
     if task_dict["frequency"] == -1 or task_dict["init_date"] == "NO_DATE":
         return "NO_DATES"
+    # TODO add suport for monthly and weekly due dates
     init_date_obj = date.fromisoformat(task_dict["init_date"])
     days_since_init = (date.today() - init_date_obj).days
     out_list = []
@@ -113,7 +117,6 @@ def add_task(freq_dict, task_name, freq):
 
 
 def task_input():
-    # TODO: test this!
     parser = argparse.ArgumentParser()
     parser.add_argument("task_name", help="the name of the task you want to add")
     parser.add_argument(
@@ -124,7 +127,6 @@ def task_input():
 
 
 def task_output():
-    # TODO: test this!
     args = task_input()
     freq_json = read_json()
     assert "ERROR" not in freq_json
@@ -208,7 +210,7 @@ def write_to_json(d):
     json_path = Path.home() / "konote_files" / "freq.json"
     try:
         with open(json_path, "w") as fout:
-            ujson.dump(d, fout)
+            json.dump(d, fout)
     except:
         return "ERROR: COULD NOT FIND FREQ JSON FILE"
 
@@ -217,7 +219,7 @@ def read_json():
     json_path = Path.home() / "konote_files" / "freq.json"
     try:
         with open(json_path, "r") as fout:
-            return ujson.load(fout)
+            return json.load(fout)
     except:
         return "ERROR: COULD NOT FIND FREQ JSON FILE"
 

@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
 # from pathlib import Path
 import argparse
-import ujson
+try:
+    import ujson as json
+except ImportError:
+    import json
 
 # from icecream import ic
 import copy
@@ -14,7 +17,7 @@ def read_tasks(task_path):
     tasks = None
     try:
         with open(task_path, "r") as fin:
-            tasks = ujson.load(fin)
+            tasks = json.load(fin)
     except:
         pass
     # if the program has been run for the first time
@@ -70,7 +73,7 @@ def write_tasks(args, tasks, kfiles_path):
         else:
             new_tasks[args.task_type][args.task_contents] = None
             with open(kfiles_path, "w") as fout:
-                ujson.dump(new_tasks, fout)
+                json.dump(new_tasks, fout)
     else:
         # TODO add support for 'st' or subtask
         if args.task_type == "st":
